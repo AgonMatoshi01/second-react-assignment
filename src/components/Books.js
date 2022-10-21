@@ -23,13 +23,11 @@ const Books = () => {
     }
 
     const renderedResults = results.map((result, i) => {
-        i++;
         return (
-            
-            <div className="card" key={result.name}>
+            <div className="card" key={i}>
                 <div className="box">
                     <div className="content">
-                        <center>Book {i}</center>
+                        <center>Book {i+1}</center>
                         <h3>{result.name}</h3>
                             <div className="card-info">
                                 <p><FaceIcon/> : {result.authors}</p>
