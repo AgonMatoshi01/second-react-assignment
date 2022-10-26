@@ -3,7 +3,7 @@ import Books from "./components/Books";
 
 const App = () =>{
     return(
-        <div>
+        <>
             <center>
             <div>
             <h1 className="content">Game of Thrones Books</h1>
@@ -11,7 +11,7 @@ const App = () =>{
             </div>
             </center>
             <Books/>
-        </div>
+        </>
         
     )
 }

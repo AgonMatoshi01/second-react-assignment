@@ -17,20 +17,23 @@ const Books = () => {
     const fetchedData = async () => {
         setLoading(true);
         const { data } = await axios.get('https://www.anapioficeandfire.com/api/books?pageSize=30');
+        data.sort((a, b) => a.released > b.released ? -1 : 1);
         setResults(data);
         setLoading(false);
 
     }
-
-    const renderedResults = results.map((result, i) => {
+    
+    const renderedResults = results?.map((result, i) => {
+        
+        const bookNumber = i+1;
         return (
             <div className="card" key={i}>
                 <div className="box">
                     <div className="content">
-                        <center>Book {i+1}</center>
+                        <center>Book:{bookNumber}</center>
                         <h3>{result.name}</h3>
                             <div className="card-info">
-                                <p><FaceIcon/> : {result.authors}</p>
+                                <p><FaceIcon/> : {result?.authors}</p>
                                 <p><MenuBookIcon/> : {result.numberOfPages}</p>
                                 <p><FlagIcon/> : {result.country}</p>
                                 <p><CalendarTodayIcon/> : {moment(result.released).format("MMM Do YYYY")}</p>
@@ -52,9 +55,9 @@ const Books = () => {
             const newResult = [...results].sort((a, b) => a.released > b.released ? -1 : 1);
             setResults(newResult);
         }
-        console.log(results);
+            console.log(results);
 
-    }
+        }
 
     const handleClick = () => {
         fetchedData();
@@ -64,7 +67,7 @@ const Books = () => {
     return (
         <div>
             <center>
-                {!hideButton ? <button className="button" onClick={handleClick}>Fetch the data</button> :
+                {!hideButton ? <button className="button" onClick={handleClick }>Fetch the data</button> :
                     <center>
                         <button className="button1" onClick={() => sortElements('ASC')}>Click for ascending  order of data</button>
                         <button className="button1" onClick={() => sortElements('DSC')}>Click for descendinga order of data</button>
